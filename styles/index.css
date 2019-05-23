@@ -1,0 +1,28 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	
+}
+
+/*Fontes*/
+
+
+.openLight{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+.openBook{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.openBold{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+/*Fontes*/
