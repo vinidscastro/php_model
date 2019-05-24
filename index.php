@@ -16,7 +16,7 @@
 
 </head>
 <body>
-
+	
 	
 	<header>
 		<div class="container">
@@ -30,9 +30,7 @@
 	<div class="container">
 		<div class="tableWrapper">
 			<ul class="listaProdutos">
-				<li class="itemProdutos">
-					xxx
-				</li>
+				
 			</ul>
 		</div>
 	</div>
