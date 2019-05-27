@@ -25,4 +25,8 @@ body{
 	font-weight: 700;
 }
 
+table.table td, table.table th {
+	vertical-align: middle;
+}
+
 /*Fontes*/
