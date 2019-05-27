@@ -11,8 +11,8 @@ $(window).on('load', function(){
         + '<td class="col_dsProd">' + item.descricao + '</td>'
         + '<td class="col_npOriginal">' + item.npOriginal + '</td>'
         + '<td class="col_npPromo">' + item.npPromo + '</td>' 
-        + '<td class="col_npPromo"><button class="btn btn-outline-primary  btn_editarItem"><i class="fas fa-edit"></i></button>' 
-        + '<td class="col_npPromo"><button class="btn btn-outline-primary btn_excluirItem"><i class="fas fa-trash"></i></button>' 
+        + '<td class="col_Edita"><button class="btn btn-outline-primary  btn_editarItem"><i class="fas fa-edit"></i></button>' 
+        + '<td class="col_Deleta"><button class="btn btn-outline-primary btn_excluirItem"><i class="fas fa-trash"></i></button>' 
         +  '</td>'
         +'</tr>');
            
@@ -45,8 +45,25 @@ $(window).on('load', function(){
                     
                 }
             }
-        })
+        });
     });
+
+
+    $('.table').on('click', '.btn_excluirItem', function(){
+        let id_produto = $(this).parent().siblings('.col_id').text();
+        // id_produto = parseInt(id_produto);
+        alert(id_produto);
+        $.ajax({          
+            url:'deleta.php',
+            type: 'post',
+            data: {id_produto: id_produto},
+            success: function(data){
+               $('#tableBody').html('');
+                carregaLista();
+                console.log(data);
+            }
+        });
+    })
 
     carregaLista();
 
