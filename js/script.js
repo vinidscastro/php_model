@@ -5,7 +5,8 @@ $(window).on('load', function(){
         url:'get.php',
         dataType: 'json',
         success: function(data){
-           for(let item of data){
+          
+            for(let item of data){
             $('#tableBody').append('<tr class="prodRow" >'
         + '<td class="col_id">' + item.id + '</td>'
         + '<td class="col_dsProd">' + item.descricao + '</td>'
@@ -41,6 +42,7 @@ $(window).on('load', function(){
                         $('#form_ds_produto').val(item.descricao);
                         $('#form_npOriginal').val(item.npOriginal);
                         $('#form_npPromo').val(item.npPromo);
+                        $('#form_ds_produto').focus();
                     }
                     
                 }
@@ -67,19 +69,21 @@ $(window).on('load', function(){
 
     carregaLista();
 
+    var urlPost = '';
+    function urlCheck(){
+        if($('#form_idProduto').val() == ''){
+                urlPost = 'action.php';
+            } else{
+                urlPost = 'edit.php';
+            };
+    }
+
     $('#formEdit').submit(function(){
         event.preventDefault();
-        var str = $('#formEdit').serialize();
-        // let id = $('#form_idProduto').val();
-        // id = parseInt(id);
-        // console.log(
-        //     $('#form_idProduto').val(),
-        //     $('#form_ds_produto').val(),
-        //     $('#form_npOriginal').val(),
-        //     $('#form_npPromo').val()
-        // );
+        str = $('#formEdit :input[value!=""]').serialize();
+        urlCheck();
         $.ajax({
-            url: 'edit.php',
+            url: urlPost,
             type: 'post',
             data: str,
             success: function(){
@@ -91,9 +95,23 @@ $(window).on('load', function(){
                 $('#form_npPromo').val('');
                 $('#tableBody').html('');
                 carregaLista();
+                console.log(urlPost);
+                console.log($('#form_idProduto').val());
+                console.log(str);
             }
 
         });
+    });
+
+    $('#btn-addItem').click(function(){
+        $('#form_idProduto').val('');
+        $('#form_ds_produto').val('');
+        $('#form_npOriginal').val('');
+        $('#form_npPromo').val('');
+        $('#form_ds_produto').prop('disabled', false);
+        $('#form_npOriginal').prop('disabled', false);
+        $('#form_npPromo').prop('disabled', false);
+        $('#form_ds_produto').focus();
     })
 
 });
