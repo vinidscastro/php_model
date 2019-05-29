@@ -54,7 +54,8 @@ $(window).on('load', function(){
     $('.table').on('click', '.btn_excluirItem', function(){
         let id_produto = $(this).parent().siblings('.col_id').text();
         // id_produto = parseInt(id_produto);
-        alert(id_produto);
+        let textoProd = $(this).parent().parent().find('.col_dsProd').text()
+        alert('Deseja Realmente deletar ' + textoProd);
         $.ajax({          
             url:'deleta.php',
             type: 'post',
@@ -62,7 +63,6 @@ $(window).on('load', function(){
             success: function(data){
                $('#tableBody').html('');
                 carregaLista();
-                console.log(data);
             }
         });
     })
@@ -95,9 +95,7 @@ $(window).on('load', function(){
                 $('#form_npPromo').val('');
                 $('#tableBody').html('');
                 carregaLista();
-                console.log(urlPost);
-                console.log($('#form_idProduto').val());
-                console.log(str);
+               
             }
 
         });

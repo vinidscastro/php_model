@@ -57,7 +57,7 @@
 			<table class="table table-striped" id="listaTrocas">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+
                 <th scope="col">Descrição</th>
                 <th scope="col">de:</th>
                 <th scope="col">por:</th>
