@@ -1,5 +1,7 @@
 $(window).on('load', function(){
-    
+
+
+        
    function carregaLista(){
     $.ajax({
         url:'get.php',
@@ -50,10 +52,55 @@ $(window).on('load', function(){
         });
     });
 
+    // Pesquisa
+
+
+    function searchBar(){
+        let searchField = $('#searchInput').val();
+        searchField =  searchField.toLowerCase();
+
+        // alert(searchField);
+        $.ajax({
+            url:'busca.php',
+            type: 'post',
+            dataType: 'json',
+            data: {searchField: searchField},
+            success: function(response){
+                console.log(response);
+                 $('#tableBody').html('');
+                 for(let item of response){
+                    $('#tableBody').append('<tr class="prodRow" >'
+                + '<td class="col_id">' + item.id + '</td>'
+                + '<td class="col_dsProd">' + item.descricao + '</td>'
+                + '<td class="col_npOriginal">' + item.npOriginal + '</td>'
+                + '<td class="col_npPromo">' + item.npPromo + '</td>' 
+                + '<td class="col_Edita"><button class="btn btn-outline-primary  btn_editarItem"><i class="fas fa-edit"></i></button>' 
+                + '<td class="col_Deleta"><button class="btn btn-outline-primary btn_excluirItem"><i class="fas fa-trash"></i></button>' 
+                +  '</td>'
+                +'</tr>');
+                   
+                } 
+                               
+            }
+        })
+    }
+
+   
+
+
+    $('#searchInput').keyup(function(){
+        if($(this).val() == ''){
+            $('#tableBody').html('');
+            carregaLista();
+        } else if($(this).val() != ''){
+            searchBar();
+        }
+
+    })
 
     $('.table').on('click', '.btn_excluirItem', function(){
         let id_produto = $(this).parent().siblings('.col_id').text();
-        // id_produto = parseInt(id_produto);
+        id_produto = parseInt(id_produto);
         let textoProd = $(this).parent().parent().find('.col_dsProd').text()
         alert('Deseja Realmente deletar ' + textoProd);
         $.ajax({          

@@ -25,6 +25,16 @@
         <div class="col-7"><h1 class="openBold h3">Tabela de Produtos</h1></div>
         <div class="col-5 text-right"><button id="btn-addItem" class="btn btn-outline-dark">Adicionar Item <i class="fas fa-plus"></i></button></div>
       </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <div class="input-group">
+            <input id="searchInput" name="searchInput" type="text" class="form-control">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" id="buttonBusca" style="padding-left: 30px; padding-right: 30px;">Buscar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 		</div>
 	</header>
   
